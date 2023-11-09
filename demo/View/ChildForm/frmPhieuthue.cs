@@ -18,8 +18,10 @@ namespace demo.View.ChildForm
         SanphamController sanphamController;
         PhieuthueController phieuthueController;
         ChitietController chitietController;
+        NhanvienController nhanvienController;
         List<Sanpham> ds_sanpham;//danh sach kho
         List<Khach> ds_khach;//danh sach hang hoa
+        List<Nhanvien> ds_nhanvien;
         Phieuthue currentphieu;
         public frmPhieuthue()
         {
@@ -47,18 +49,21 @@ namespace demo.View.ChildForm
 
         private void frmPhieuthue_Load(object sender, EventArgs e)
         {
-            ds_sanpham = new List<Sanpham>(); //chứa danh sách kho
-            sanphamController = new SanphamController();//Kho controller
-            //ds_khach = khachController.load();
-            //ds_khach = new List<Khach>();
             chitietController = new ChitietController();
             sanphamController = new SanphamController();
+            nhanvienController = new NhanvienController();
+            khachController = new KhachController();
+            ds_sanpham = new List<Sanpham>(); 
+            ds_khach = khachController.load();
+            ds_khach = new List<Khach>();
+            ds_nhanvien = new List<Nhanvien>();
+            ds_nhanvien = nhanvienController.load();
             ds_sanpham = sanphamController.load();
             phieuthueController = new PhieuthueController();
 
-            foreach (Sanpham k in ds_sanpham)
+            foreach (Nhanvien n in ds_nhanvien)
             {
-                comboBox1.Items.Add(k.getIdsp());
+                comboBox1.Items.Add(n.getIdnv());
 
             }
             DataGridViewComboBoxColumn comboboxColumn;
